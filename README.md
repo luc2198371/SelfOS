@@ -76,9 +76,22 @@ types/
 
 ## Notes on platforms
 
-Next.js ships a native SWC binary for fast compilation. On platforms where
-that binary fails to load (Termux on Android, some Alpine containers, etc.),
-this project also includes `@next/swc-wasm-nodejs` as a dev dependency.
-Next.js auto-detects it and falls back to the WASM build — slower, but works
-everywhere. No flags needed.
+Next.js compiles with SWC. On Termux/Android arm64 (and a few other
+non-tier-1 platforms) the native SWC binary isn't published for every Next
+patch version. When it's missing, Next falls back to downloading it from
+npm at startup — which 404s on `@next/swc-android-arm64@14.2.15` and crashes
+the dev server before even reading `next.config.mjs`. So
+`experimental.useWasmBinary` alone doesn't help.
+
+The fix: `scripts/use-wasm-swc.js` is preloaded via `NODE_OPTIONS --require`
+in the `dev` / `build` / `start` npm scripts. It checks whether
+`@next/swc-wasm-nodejs` (a regular `dependency` here) is installed, and if
+so, sets `process.versions.webcontainer = "forced"`. Next's binding loader
+has a shortcut that takes the WASM-first path whenever that flag is truthy,
+so the WASM build loads cleanly and the native-download path is never
+reached.
+
+The script is a no-op on platforms where the native SWC binary works fine.
+Fonts (JetBrains Mono + Inter) load via `<link>` in `app/layout.tsx`
+instead of `next/font`, which has rough edges with WASM SWC.
 
