@@ -1,0 +1,75 @@
+import type { Habit } from "@/types";
+
+export const habits: Habit[] = [
+  {
+    id: "h_wake",
+    name: "Wake up before 7:00",
+    cadence: { kind: "daily" },
+    category: "discipline",
+    createdAt: "2025-09-01",
+  },
+  {
+    id: "h_move",
+    name: "Move my body",
+    cadence: { kind: "daily" },
+    category: "health",
+    createdAt: "2025-09-01",
+  },
+  {
+    id: "h_read",
+    name: "Read 20 pages",
+    cadence: { kind: "daily" },
+    category: "knowledge",
+    createdAt: "2025-09-01",
+  },
+  {
+    id: "h_code",
+    name: "Code or study deeply",
+    cadence: { kind: "weekdays" },
+    category: "career",
+    createdAt: "2025-09-01",
+  },
+  {
+    id: "h_journal",
+    name: "Journal for 5 minutes",
+    cadence: { kind: "daily" },
+    category: "mindset",
+    createdAt: "2025-09-01",
+  },
+  {
+    id: "h_sleep",
+    name: "Sleep before midnight",
+    cadence: { kind: "daily" },
+    category: "health",
+    createdAt: "2025-09-01",
+  },
+  {
+    id: "h_water",
+    name: "Drink 8 cups of water",
+    cadence: { kind: "daily" },
+    category: "health",
+    createdAt: "2025-09-01",
+  },
+  {
+    id: "h_noscroll",
+    name: "No mindless scrolling",
+    cadence: { kind: "daily" },
+    isAvoid: true,
+    category: "discipline",
+    createdAt: "2025-10-01",
+  },
+  {
+    id: "h_skill",
+    name: "Practice a skill",
+    cadence: { kind: "n-per-week", n: 4 },
+    category: "creativity",
+    createdAt: "2025-10-15",
+  },
+  {
+    id: "h_family",
+    name: "Reach out to family",
+    cadence: { kind: "n-per-week", n: 2 },
+    category: "relationships",
+    createdAt: "2025-09-01",
+  },
+];
