@@ -76,9 +76,14 @@ types/
 
 ## Notes on platforms
 
-Next.js ships a native SWC binary for fast compilation. On platforms where
-that binary fails to load (Termux on Android, some Alpine containers, etc.),
-this project also includes `@next/swc-wasm-nodejs` as a dev dependency.
-Next.js auto-detects it and falls back to the WASM build — slower, but works
-everywhere. No flags needed.
+Next.js ships a native SWC binary for compilation. On Termux/Android arm64
+(and a few other non-tier-1 platforms) that binary won't load, and even the
+`@next/swc-wasm-nodejs` fallback can be flaky. This project ships a
+`babel.config.js` with `next/babel`, which makes Next compile with Babel
+instead. Slower compile, but works wherever Node runs.
+
+A consequence of using Babel: `next/font` is disabled. So fonts (JetBrains
+Mono + Inter) are loaded via a `<link>` tag in `app/layout.tsx` instead.
+If you ever move to a platform where SWC works and want the speedup, just
+delete `babel.config.js` and the project will use SWC again.
 
