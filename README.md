@@ -76,14 +76,20 @@ types/
 
 ## Notes on platforms
 
-Next.js ships a native SWC binary for compilation. On Termux/Android arm64
-(and a few other non-tier-1 platforms) that binary won't load, and even the
-`@next/swc-wasm-nodejs` fallback can be flaky. This project ships a
-`babel.config.js` with `next/babel`, which makes Next compile with Babel
-instead. Slower compile, but works wherever Node runs.
+Next.js compiles with SWC. On Termux/Android arm64 (and a couple of other
+non-tier-1 platforms) the native SWC binary isn't published for every Next
+patch version, and Next's runtime fallback tries to download it from npm and
+404s. To avoid that, this project:
 
-A consequence of using Babel: `next/font` is disabled. So fonts (JetBrains
-Mono + Inter) are loaded via a `<link>` tag in `app/layout.tsx` instead.
-If you ever move to a platform where SWC works and want the speedup, just
-delete `babel.config.js` and the project will use SWC again.
+- Pins `@next/swc-wasm-nodejs` in `dependencies` (not devDependencies, so
+  `NODE_ENV=production` installs still pick it up).
+- Sets `experimental.useWasmBinary: true` in `next.config.mjs` so Next loads
+  the WASM build first and never reaches the native-download path.
+- Loads JetBrains Mono + Inter via a `<link>` tag in `app/layout.tsx`
+  instead of `next/font`, since `next/font` has rough edges with WASM SWC.
+
+If you're on a platform where the native SWC binary works (most
+desktops/CI), nothing changes — Next will still take the WASM path due to
+the flag, just a touch slower than native. Remove the
+`experimental.useWasmBinary` line if you want native SWC speed.
 
