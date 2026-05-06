@@ -71,7 +71,7 @@ export const navGroups: NavGroup[] = [
         href: "/future-self",
         label: "Future Self",
         icon: Telescope,
-        status: "soon",
+        status: "mvp",
       },
     ],
   },
@@ -88,8 +88,8 @@ export const navGroups: NavGroup[] = [
     id: "growth",
     label: "GROWTH",
     items: [
-      { href: "/life-progress", label: "Life Progress", icon: Compass, status: "soon" },
-      { href: "/mood", label: "Mood & Patterns", icon: Sparkles, status: "soon" },
+      { href: "/life-progress", label: "Life Progress", icon: Compass, status: "mvp" },
+      { href: "/mood", label: "Mood & Patterns", icon: Sparkles, status: "mvp" },
       { href: "/skills", label: "Skills & Learning", icon: Lightbulb, status: "soon" },
       { href: "/health", label: "Health & Body", icon: Footprints, status: "soon" },
       { href: "/finance", label: "Finance", icon: HandCoins, status: "soon" },
@@ -99,7 +99,7 @@ export const navGroups: NavGroup[] = [
     id: "system",
     label: "—",
     items: [
-      { href: "/settings", label: "Settings", icon: SettingsIcon, status: "soon" },
+      { href: "/settings", label: "Settings", icon: SettingsIcon, status: "mvp" },
     ],
   },
 ];
@@ -132,6 +132,22 @@ export const titleByPath: Record<string, { title: string; description?: string }
   "/weekly-review": {
     title: "Weekly Review",
     description: "Seven questions, every Sunday.",
+  },
+  "/life-progress": {
+    title: "Life Progress",
+    description: "Ten categories, scored over time.",
+  },
+  "/mood": {
+    title: "Mood & Patterns",
+    description: "The shape of your inner weather.",
+  },
+  "/future-self": {
+    title: "Future Self",
+    description: "Who you're becoming.",
+  },
+  "/settings": {
+    title: "Settings",
+    description: "The few knobs worth keeping.",
   },
 };
 

@@ -1,15 +1,20 @@
-import { ComingSoon } from "@/components/layout/coming-soon";
+import { PageHeader } from "@/components/layout/page-header";
+import { ScoresOverview } from "@/components/life-progress/scores-overview";
+import { CategoriesBoard } from "@/components/life-progress/categories-board";
+import { ScoresDialog } from "@/components/life-progress/scores-dialog";
+import { lifeCategories } from "@/lib/mock";
 
 export default function LifeProgressPage() {
   return (
-    <ComingSoon
-      title="Life Progress"
-      description="Ten life categories, scored, charted, and noted over time."
-      bullets={[
-        "Health, Career, Money, Knowledge, Discipline, Relationships, Mindset, Faith, Creativity, Adventure.",
-        "Each category: current score / goal score / current focus / charted history.",
-        "Improvement notes you actually want to reread.",
-      ]}
-    />
+    <div className="space-y-7">
+      <PageHeader
+        title="Life Progress"
+        description="The whole picture, scored and tracked over time. Click any category to read the focus and the notes you've left for yourself."
+        action={<ScoresDialog categories={lifeCategories} />}
+      />
+
+      <ScoresOverview categories={lifeCategories} />
+      <CategoriesBoard categories={lifeCategories} />
+    </div>
   );
 }

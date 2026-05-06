@@ -156,3 +156,18 @@ export interface Milestone {
   targetDate: ISODate;
   done?: boolean;
 }
+
+export type FutureSelfHorizon = "1y" | "5y" | "10y" | "ideal-day" | "legacy";
+
+export interface FutureSelfStatement {
+  id: string;
+  horizon: FutureSelfHorizon;
+  body: string;
+  updatedAt: ISODateTime;
+}
+
+export interface IdealDayBlock {
+  hour: number; // 0–23
+  activity: string;
+}
+
