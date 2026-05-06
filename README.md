@@ -73,3 +73,12 @@ types/
 ## Keyboard
 
 `Cmd+K` / `Ctrl+K` opens the command palette anywhere.
+
+## Notes on platforms
+
+Next.js ships a native SWC binary for fast compilation. On platforms where
+that binary fails to load (Termux on Android, some Alpine containers, etc.),
+this project also includes `@next/swc-wasm-nodejs` as a dev dependency.
+Next.js auto-detects it and falls back to the WASM build — slower, but works
+everywhere. No flags needed.
+
