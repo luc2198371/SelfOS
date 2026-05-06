@@ -76,20 +76,22 @@ types/
 
 ## Notes on platforms
 
-Next.js compiles with SWC. On Termux/Android arm64 (and a couple of other
+Next.js compiles with SWC. On Termux/Android arm64 (and a few other
 non-tier-1 platforms) the native SWC binary isn't published for every Next
-patch version, and Next's runtime fallback tries to download it from npm and
-404s. To avoid that, this project:
+patch version. When it's missing, Next falls back to downloading it from
+npm at startup — which 404s on `@next/swc-android-arm64@14.2.15` and crashes
+the dev server before even reading `next.config.mjs`. So
+`experimental.useWasmBinary` alone doesn't help.
 
-- Pins `@next/swc-wasm-nodejs` in `dependencies` (not devDependencies, so
-  `NODE_ENV=production` installs still pick it up).
-- Sets `experimental.useWasmBinary: true` in `next.config.mjs` so Next loads
-  the WASM build first and never reaches the native-download path.
-- Loads JetBrains Mono + Inter via a `<link>` tag in `app/layout.tsx`
-  instead of `next/font`, since `next/font` has rough edges with WASM SWC.
+The fix: `scripts/use-wasm-swc.js` is preloaded via `NODE_OPTIONS --require`
+in the `dev` / `build` / `start` npm scripts. It checks whether
+`@next/swc-wasm-nodejs` (a regular `dependency` here) is installed, and if
+so, sets `process.versions.webcontainer = "forced"`. Next's binding loader
+has a shortcut that takes the WASM-first path whenever that flag is truthy,
+so the WASM build loads cleanly and the native-download path is never
+reached.
 
-If you're on a platform where the native SWC binary works (most
-desktops/CI), nothing changes — Next will still take the WASM path due to
-the flag, just a touch slower than native. Remove the
-`experimental.useWasmBinary` line if you want native SWC speed.
+The script is a no-op on platforms where the native SWC binary works fine.
+Fonts (JetBrains Mono + Inter) load via `<link>` in `app/layout.tsx`
+instead of `next/font`, which has rough edges with WASM SWC.
 
