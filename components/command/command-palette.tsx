@@ -5,12 +5,15 @@ import {
   CalendarCheck2,
   CalendarDays,
   Compass,
+  Download,
   FileClock,
   Flame,
   GitBranch,
   HomeIcon,
+  Mail,
   NotebookPen,
   Plus,
+  Sliders,
   Target,
   Telescope,
   Users,
@@ -74,6 +77,18 @@ export function CommandPalette() {
             <FileClock />
             <span>Open weekly review</span>
           </CommandItem>
+          <CommandItem onSelect={() => go("/life-progress")}>
+            <Sliders />
+            <span>Update life scores</span>
+          </CommandItem>
+          <CommandItem onSelect={() => go("/future-self")}>
+            <Mail />
+            <span>Write to future self</span>
+          </CommandItem>
+          <CommandItem onSelect={() => go("/settings")}>
+            <Download />
+            <span>Export everything</span>
+          </CommandItem>
         </CommandGroup>
 
         <CommandSeparator />
@@ -107,11 +122,6 @@ export function CommandPalette() {
             <FileClock />
             <span>Weekly Review</span>
           </CommandItem>
-        </CommandGroup>
-
-        <CommandSeparator />
-
-        <CommandGroup heading="COMING SOON">
           <CommandItem onSelect={() => go("/life-progress")}>
             <Compass />
             <span>Life Progress</span>
@@ -120,6 +130,19 @@ export function CommandPalette() {
             <Sparkles />
             <span>Mood & Patterns</span>
           </CommandItem>
+          <CommandItem onSelect={() => go("/future-self")}>
+            <Telescope />
+            <span>Future Self</span>
+          </CommandItem>
+          <CommandItem onSelect={() => go("/settings")}>
+            <Settings />
+            <span>Settings</span>
+          </CommandItem>
+        </CommandGroup>
+
+        <CommandSeparator />
+
+        <CommandGroup heading="COMING SOON">
           <CommandItem onSelect={() => go("/skills")}>
             <Lightbulb />
             <span>Skills & Learning</span>
@@ -140,17 +163,9 @@ export function CommandPalette() {
             <MapIcon />
             <span>Travel & Memories</span>
           </CommandItem>
-          <CommandItem onSelect={() => go("/future-self")}>
-            <Telescope />
-            <span>Future Self</span>
-          </CommandItem>
           <CommandItem onSelect={() => go("/year-in-review")}>
             <CalendarDays />
             <span>Year in Review</span>
-          </CommandItem>
-          <CommandItem onSelect={() => go("/settings")}>
-            <Settings />
-            <span>Settings</span>
           </CommandItem>
         </CommandGroup>
       </CommandList>

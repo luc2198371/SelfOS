@@ -8,3 +8,4 @@ export { timelineEvents } from "./timeline";
 export { lifeCategories } from "./life-categories";
 export { weeklyReviews } from "./weekly-reviews";
 export { quotes, quoteOfTheDay } from "./quotes";
+export { futureSelfStatements, idealDay } from "./future-self";

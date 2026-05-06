@@ -8,6 +8,7 @@ import { WelcomeCard } from "@/components/dashboard/welcome-card";
 import { MetricCard } from "@/components/dashboard/metric-card";
 import { MainGoalCard } from "@/components/dashboard/main-goal-card";
 import { JournalPreviewCard } from "@/components/dashboard/journal-preview-card";
+import { OnThisDayCard } from "@/components/dashboard/on-this-day-card";
 import { NextMilestoneCard } from "@/components/dashboard/next-milestone-card";
 import { QuoteCard } from "@/components/dashboard/quote-card";
 import { StreakCells } from "@/components/dashboard/streak-cells";
@@ -96,9 +97,10 @@ export default function DashboardPage() {
         <StreakCells days={28} />
       </section>
 
-      {/* Journal preview */}
-      <section className="grid gap-3">
+      {/* Journal preview + on this day */}
+      <section className="grid gap-3 lg:grid-cols-2">
         <JournalPreviewCard />
+        <OnThisDayCard />
       </section>
     </div>
   );

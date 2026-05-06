@@ -135,6 +135,45 @@ What I want next week: less noise. One real conversation. A long walk on Saturda
     mood: "great",
     tags: ["data", "compound"],
   },
+  {
+    id: "j_letter_to_001",
+    date: daysAgoISO(7),
+    createdAt: `${daysAgoISO(7)}T22:30:00`,
+    title: "Letter to me, one year from now",
+    body: `If you're reading this, you finished something hard. Probably not the thing you set out to finish — but something. That's how it always goes.
+
+I want you to remember the version of you who started: tired, full of doubt, half-convinced this was another project that wouldn't ship. He showed up anyway. Most days. That's the only thing that matters.
+
+Three things I hope you didn't lose between now and then:
+- The hour without the phone in the morning.
+- Sunday calls home.
+- The willingness to be embarrassingly bad at something new.
+
+If you lost them, that's where you start again. Not from zero. From here.
+
+I love you. I trust you. Keep going.`,
+    mood: "good",
+    tags: ["letter:to-future-self", "letter", "writing"],
+    favorite: true,
+  },
+  {
+    id: "j_letter_from_001",
+    date: daysAgoISO(365),
+    createdAt: `${daysAgoISO(365)}T19:45:00`,
+    title: "From me, a year ago",
+    body: `Hey. It's me from a year back.
+
+I don't know what's happened to you in the last twelve months — but I know what I was scared of when I wrote this, and I want to remind you, because you've probably stopped noticing:
+
+You spent most of this year afraid of looking foolish. That fear cost more than you think. It cost you the thing you almost said in March, the project you almost shipped in July, the call you almost made in October.
+
+If anything has loosened in you between then and now, please don't tighten it back up. Keep being a little embarrassing on purpose. It's the most generous thing you ever did.
+
+Also — go for the run. You always feel better after.`,
+    mood: "ok",
+    tags: ["letter:from-past-me", "letter", "writing"],
+    favorite: true,
+  },
 ];
 
 export const journalPrompts: string[] = [
